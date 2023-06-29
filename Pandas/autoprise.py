@@ -10,7 +10,8 @@ headers = ["symboling", "normalized-losses", "make", "fuel-type", "aspiration", 
 
 df = pd.read_csv(url, names=headers)
 print(df['num-of-doors'].head())
-df.replace('?', np.NAN, inplace=True)
+df.replace('?', np.NAN, inplace=True
+
 print(df['num-of-doors'].head())
 max_doors = df['num-of-doors'].value_counts().idxmax()
 print('max_doors: ', max_doors)
