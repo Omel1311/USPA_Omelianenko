@@ -4,6 +4,21 @@ import matplotlib.pyplot as plt
 from scipy import stats
 import seaborn as sb
 
+pd.set_option('display.max_columns', 100)
+pd.set_option('display.max_rows', 500)
+pd.set_option('display.width', 1000)
+
+
+# from colorama import Fore, Back, Style
+# print(Fore.WHITE + 'some red text')
+# # print(Back.GREEN + 'and with a green background')
+# # print(Style.DIM + 'and in dim text')
+# # print(Style.RESET_ALL)
+# # print('back to normal now')
+
+
+
+
 
 
 # url= "C:\\Users\\0487\\Desktop\\Омельяненко\\кпд\\вердиш\\загальний.xlsx"
@@ -11,7 +26,8 @@ url= 'C:\\Users\\0487\\Desktop\\Омельяненко\\кпд\\зп.xlsx'
 df = pd.read_excel(url, sheet_name='python_2')
 print(df.info())
 df.fillna(0)
-# print(df.info())
+df.replace(0, '@@@@@', inplace=True)
+print(df.head(100))
 # df_test = df[['Показник','2022 Ізмаїльський морський порт', '2022 Ренійський морський порт', '2022 Морський порт "Усть-Дунайськ"', 'дата']]
 
 # df_test_group = df_test.groupby(['дата','2022 Ренійський морський порт', 'Показник'], as_index=False).mean()
@@ -98,7 +114,3 @@ df33.to_excel('df33.xlsx')
 
 
 
-
-c,p = stats.pearsonr(df.where(filter,inplace=True)['Штат'], df['Фонд_ЗП'])
-p1 = np.format_float_positional(p, trim='-')
-print(p1, c)
