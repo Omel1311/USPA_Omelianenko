@@ -27,7 +27,7 @@ df = pd.read_excel(url, sheet_name='python_2')
 print(df.info())
 df.fillna(0)
 df.replace(0, '@@@@@', inplace=True)
-print(df.head(100))
+print(df['Підрозділ'].value_counts())
 # df_test = df[['Показник','2022 Ізмаїльський морський порт', '2022 Ренійський морський порт', '2022 Морський порт "Усть-Дунайськ"', 'дата']]
 
 # df_test_group = df_test.groupby(['дата','2022 Ренійський морський порт', 'Показник'], as_index=False).mean()
@@ -113,4 +113,4 @@ df33=pd.pivot_table(df, values='Штат', index='Дата', columns='Підро
 df33.to_excel('df33.xlsx')
 
 
-
+print(df['Дата'].value_counts())
