@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from scipy import stats
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 
@@ -39,8 +41,24 @@ lm2.fit(df[['normalized-losses' , 'highway-mpg']],df['price'])
 print(lm2.coef_)
 print(lm2.intercept_)
 
+width = 12
+height = 10
+plt.figure(figsize=(width, height))
+sns.regplot(x="highway-mpg", y="price", data=df)
+plt.ylim(0,)
+plt.show()
+
+plt.figure(figsize=(width, height))
+sns.regplot(x="peak-rpm", y="price", data=df)
+plt.ylim(0,)
+plt.show()
 
 
+print('corr', df[["peak-rpm","highway-mpg","price"]].corr())
+
+sns.set (rc = {'figure.figsize':(8, 8)})
+dataplot = sns.heatmap(df[["peak-rpm","highway-mpg","price"]].corr(), cmap="YlGnBu", annot=True)
+plt.show()
 # X=df[['sales']]
 # y= df['advertising costs']
 #
