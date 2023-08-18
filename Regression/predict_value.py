@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
-from sklearn.metrics import r2_score
 from sklearn.linear_model import LinearRegression
+from scipy import stats
 
 
 
@@ -10,22 +10,57 @@ pd.set_option('display.width', 1000)
 pd.set_option('display.max_rows', 500)
 
 
-excel_file = 'C:\\Users\\0487\\Desktop\\Омельяненко\\АНАЛІЗ_ЗП_філії\\Загальна_таблиця_ЗП.xlsx'
 
-df=pd.read_excel(excel_file)
+url = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DA0101EN-SkillsNetwork/labs/Data%20files/automobileEDA.csv'
 
-model = LinearRegression()
+df=pd.read_csv(url, header=0)
 
-df = df.fillna(0)
-print(df.tail(30))
+print(df.head())
+lm = LinearRegression()
 
-X= df[['Нараховано всього', 'Квартальна премія']]
-y=df['Нараховано за посадовим окладом']
+X = df[['engine-size']]
+Y = df['price']
 
-model.fit(X,y)
+lm.fit(X,Y)
 
-new_x = pd.DataFrame({'Нараховано всього': [10000], 'Квартальна премія':[4444]})
-Y_predict = model.predict(new_x)
-print(Y_predict)
+Yhat=lm.predict(X)
+
+print(lm.coef_)
+print(lm.intercept_)
+
+Z = df[['horsepower', 'curb-weight', 'engine-size', 'highway-mpg']]
+lm.fit(Z, df['price'])
+print(lm.coef_)
+print(lm.intercept_)
+
+
+lm2 = LinearRegression()
+lm2.fit(df[['normalized-losses' , 'highway-mpg']],df['price'])
+print(lm2.coef_)
+print(lm2.intercept_)
+
+
+
+# X=df[['sales']]
+# y= df['advertising costs']
+#
+# model.fit(X,y)
+#
+# new_x = pd.DataFrame({'sales': [10]})
+#
+# Y_predict = model.predict(new_x)
+#
+# r2 = model.score(X,y)
+#
+#
+# print('Y_predict: ', Y_predict)
+# print('r2: ', r2)
+#
+# coof, P_value = stats.pearsonr(df['advertising costs'], df['sales'])
+# P_value1 = np.format_float_positional(P_value, trim='-')
+# print('coof = ', coof, 'P_value = ', P_value1 )
+#
+
+
 
 
