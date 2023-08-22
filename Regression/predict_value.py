@@ -168,8 +168,16 @@ plt.legend()
 plt.show()
 
 
+new_input=np.arange(1, 100, 1).reshape(-1, 1)
+lm.fit(X, Y)
+yhat=lm.predict(new_input)
+print(yhat[0:5])
+plt.plot(new_input, yhat)
+plt.show()
 
 """
+Decision Making: Determining a Good Model Fit
+
 
 <p>Now that we have visualized the different models, and generated the R-squared and MSE values for the fits, how do we determine a good model fit?
 <ul>
