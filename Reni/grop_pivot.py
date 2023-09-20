@@ -11,7 +11,7 @@ excel_file_2 = 'C:\\Users\\0487\\Desktop\\Омельяненко\\АНАЛІЗ_�
 #
 # # df=pd.read_excel(excel_file)
 df2=pd.read_excel(excel_file_2)
-# # print(df.info())
+print(df2.info())
 # # print(df.memory_usage(deep=True))
 # # print(df['ПП «Ларус Шиппінг» 2022'].value_counts()
 #
@@ -57,7 +57,8 @@ sorted = filtered_df.sort_values('Премії до свят', ascending=False)
 # print(filtered_df)
 # print(filtered_df.info())
 
-
+df2['d']=pd.qcut(df2['ID'],q=4, labels=False)
+print(df2)
 
 df3 = df2.loc[df2['Нараховано за посадовим окладом']>100000, ['Філія','Найменування посади','Нараховано за посадовим окладом']]
 print(df3.sort_values('Нараховано за посадовим окладом', ascending=False))
