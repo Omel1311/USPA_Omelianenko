@@ -11,6 +11,7 @@ import matplotlib
 from sklearn.linear_model import Ridge
 import seaborn as sb
 import plotly.express as px
+import mplcursors
 #_______________________________________________________________
 
 pd.set_option('display.max_columns', 500)
@@ -47,31 +48,31 @@ print("number of NaN values for the column bathrooms :", df['bathrooms'].isnull(
 unique_floor = df['floors'].value_counts().to_frame()
 print(unique_floor)
 #_______________________________________________________________
-width = 10
-height = 8
-plt.figure(figsize=(width, height))
-sns.boxplot(y='price', x='condition', data=df)
-plt.title('Boxplot of Price by Waterfront View')
-plt.xlabel('Waterfront View')
-plt.ylabel('Price')
-
-#_______________________________________________________________
-count, bin_edges = np.histogram(df["condition"])
-plt.figure(figsize=(width, height))
-df["condition"].plot(kind='hist', figsize=(8, 5), color='teal',  xticks=bin_edges)
-# add a title to the histogram
-
-#_______________________________________________________________
-lm = LinearRegression()
-width = 10
-height = 8
-plt.figure(figsize=(width, height))
-sns.regplot(x="condition", y="price", data=df, scatter_kws={'color':'seagreen'}, line_kws={'color':'peru'})
-plt.ylim(0,)
-
-#_______________________________________________________________________________________________
-print('!'*200)
-print(df.corr()['price'].sort_values())
+# width = 10
+# height = 8
+# plt.figure(figsize=(width, height))
+# sns.boxplot(y='price', x='condition', data=df)
+# plt.title('Boxplot of Price by Waterfront View')
+# plt.xlabel('Waterfront View')
+# plt.ylabel('Price')
+#
+# #_______________________________________________________________
+# count, bin_edges = np.histogram(df["condition"])
+# plt.figure(figsize=(width, height))
+# df["condition"].plot(kind='hist', figsize=(8, 5), color='teal',  xticks=bin_edges)
+# # add a title to the histogram
+#
+# #_______________________________________________________________
+# lm = LinearRegression()
+# width = 10
+# height = 8
+# plt.figure(figsize=(width, height))
+# sns.regplot(x="condition", y="price", data=df, scatter_kws={'color':'seagreen'}, line_kws={'color':'peru'})
+# plt.ylim(0,)
+#
+# #_______________________________________________________________________________________________
+# print('!'*200)
+# print(df.corr()['price'].sort_values())
 #_______________________________________________________________
 #
 # X = df[['long']]
@@ -162,11 +163,39 @@ print(df.corr()['price'].sort_values())
 # plt.show()
 #_______________________________________________________________
 
-# Create a scatter plot using Plotly
-fig = px.scatter(df, x="yr_built", y="price", text=df['price'])
+# # Create a scatter plot using Plotly
+# fig = px.scatter(df, x="yr_built", y="price", text=df['price'])
+#
+# # Update the layout to display the hover information
+# fig.update_traces(textposition='top center')
+#
+# # Show the plot
+# fig.show()
+#_______________________________________________________________
+width = 10
+height = 8
+plt.figure(figsize=(width, height))
 
-# Update the layout to display the hover information
-fig.update_traces(textposition='top center')
+# Create a regression plot with a blue scatter plot and a red regression line
+ax = sns.regplot(x="yr_built", y="price", data=df, scatter_kws={'color':'blue'}, line_kws={'color':'red'})
 
-# Show the plot
-fig.show()
+# Define the hover function
+def hover(sel):
+    ind = sel.target[0].index
+    condition_value = df.iloc[ind]['condition']
+    sel.annotation.set_text(f'Condition: {condition_value}')
+
+# Connect the hover event to the hover function
+cursor = mplcursors.cursor(hover=True)
+
+plt.ylim(0,)
+plt.show()
+
+
+
+
+
+
+
+
+
