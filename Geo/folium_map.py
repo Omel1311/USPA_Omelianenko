@@ -22,12 +22,11 @@ longitude = -122.42
 # create map and display it
 sanfran_map = folium.Map(location=[latitude, longitude], zoom_start=12)
 
-
 #_______________________________________________________________
 
 # instantiate a feature group for the incidents in the dataframe
 incidents = folium.map.FeatureGroup()
-
+#
 
 # loop through the 100 crimes and add each to the incidents feature group
 for lat, lng, in zip(df_incidents.Y, df_incidents.X):
@@ -52,37 +51,37 @@ for lat, lng, label in zip(latitudes, longitudes, labels):
 # add incidents to map
 sanfran_map.add_child(incidents)
 
-
-# create map and display it
-sanfran_map = folium.Map(location=[latitude, longitude], zoom_start=12)
-
-# loop through the 100 crimes and add each to the map
-for lat, lng, label in zip(df_incidents.Y, df_incidents.X, df_incidents.Category):
-    folium.vector_layers.CircleMarker(
-        [lat, lng],
-        radius=5, # define how big you want the circle markers to be
-        color='yellow',
-        fill=True,
-        popup=label,
-        fill_color='blue',
-        fill_opacity=0.6
-    ).add_to(sanfran_map)
-
-
-from folium import plugins
-
-# let's start again with a clean copy of the map of San Francisco
-sanfran_map = folium.Map(location = [latitude, longitude], zoom_start = 12)
-
-# instantiate a mark cluster object for the incidents in the dataframe
-incidents = plugins.MarkerCluster().add_to(sanfran_map)
-
-# loop through the dataframe and add each data point to the mark cluster
-for lat, lng, label, in zip(df_incidents.Y, df_incidents.X, df_incidents.Category):
-    folium.Marker(
-        location=[lat, lng],
-        icon=None,
-        popup=label,
-    ).add_to(incidents)
+#
+# # create map and display it
+# sanfran_map = folium.Map(location=[latitude, longitude], zoom_start=12)
+#
+# # loop through the 100 crimes and add each to the map
+# for lat, lng, label in zip(df_incidents.Y, df_incidents.X, df_incidents.Category):
+#     folium.vector_layers.CircleMarker(
+#         [lat, lng],
+#         radius=5, # define how big you want the circle markers to be
+#         color='yellow',
+#         fill=True,
+#         popup=label,
+#         fill_color='blue',
+#         fill_opacity=0.6
+#     ).add_to(sanfran_map)
+#
+#
+# from folium import plugins
+#
+# # let's start again with a clean copy of the map of San Francisco
+# sanfran_map = folium.Map(location = [latitude, longitude], zoom_start = 12)
+#
+# # instantiate a mark cluster object for the incidents in the dataframe
+# incidents = plugins.MarkerCluster().add_to(sanfran_map)
+#
+# # loop through the dataframe and add each data point to the mark cluster
+# for lat, lng, label, in zip(df_incidents.Y, df_incidents.X, df_incidents.Category):
+#     folium.Marker(
+#         location=[lat, lng],
+#         icon=None,
+#         popup=label,
+#     ).add_to(incidents)
 
 sanfran_map.save('sanfran_map.html')
