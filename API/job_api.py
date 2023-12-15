@@ -25,7 +25,7 @@ def get_number_of_jobs_with_skill(api_url, target_skill):
             number_of_jobs_with_skill = len(jobs_with_skill)
             return number_of_jobs_with_skill
     except requests.exceptions.RequestException as e:
-        print(f"Ошибка во время выполнения запроса к API: {e}")
+        print(f"Ошибка во   время выполнения запроса к API: {e}")
         return None
 
 
@@ -35,7 +35,7 @@ target_skill = 'Python'  # Замените на нужный ключевой �
 
 result = get_number_of_jobs_with_skill(api_url, target_skill)
 
-if result is not None:
+if result is not None :
     print(f"Количество вакансий с ключевым навыком '{target_skill}': {result}")
 else:
     print("Не удалось получить информацию о вакансиях.")
