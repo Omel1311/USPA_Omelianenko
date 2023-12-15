@@ -33,7 +33,7 @@ def get_number_of_jobs_with_skill(api_url, target_skill):
 api_url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DA0321EN-SkillsNetwork/labs/module%201/Accessing%20Data%20Using%20APIs/jobs.json"
 target_skill = 'Python'  # Замените на нужный ключевой навык
 
-result = get_number_of_jobs_with_skill(api_url, target_skill)
+result = get_number_of_jobs_with_skill(api_url, target_skill )
 
 if result is not None :
     print(f"Количество вакансий с ключевым навыком '{target_skill}': {result}")
