@@ -14,7 +14,7 @@ df_can = pd.read_csv('https://cf-courses-data.s3.us.cloud-object-storage.appdoma
 #_______________________________________________________________
 import urllib.request
 
-url = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/world_countries.json'
+url = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/us-states.json'
 filename = 'world_countries.json'
 
 try:

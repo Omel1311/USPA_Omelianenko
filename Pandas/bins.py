@@ -16,5 +16,5 @@ print(df['bins'].unique())
 
 print(df.head(100))
 
-df.hist(column='ran_num', bins=100,grid=False, color='#FFCF56')
-plt.show()
+# df.hist(column='ran_num', bins=100,grid=False, color='#FFCF56')
+# plt.show()

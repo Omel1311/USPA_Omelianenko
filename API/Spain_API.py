@@ -1,10 +1,15 @@
-import requests
-import json
-import pandas as pd
+def check_even_odd(number):
+    if number % 2 == 0:
+        return f"{number} is an even number."
+    else:
+        return f"{number} is an odd number."
 
-data = requests.get('https://tenders.guru/api/es/tenders/{}')
-results  = json.loads(data.text)
-df = pd.DataFrame(results)
-print(df)
+# Example usage:
+num1 = 10
+num2 = 7
 
-df2 = df.to_excel('Spain_Procurement_API.xlsx')
+result1 = check_even_odd(num1)
+result2 = check_even_odd(num2)
+
+print(result1)
+print(result2)
