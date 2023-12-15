@@ -79,7 +79,7 @@ print('q3',Q3)
 print('q1',Q1)
 outliers = df[df['ConvertedComp'] > Q4]
 print('количество вилетов', outliers.shape[0])
-print(outliers.head())
+print(outliers.head() )
 
 # Print the results
 
