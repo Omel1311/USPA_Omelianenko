@@ -71,7 +71,7 @@ if response.status_code == 200:
 
     new_df = df[df['Назва судна'] == 'SEAJOY']
     # new_df = df[['Порт призначення', 'Назва судна']]
-    print(new_df.head())
+    print(new_df.head() )
 else:
     print(f"Failed to retrieve data. Status code: {response.status_code}")
 
