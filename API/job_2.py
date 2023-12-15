@@ -23,13 +23,13 @@ def count_skills(api_url):
             family_counts = {}
 
             for fruit in data:
-                family = fruit.get('Role Category', 'Unknown')
+                family = fruit.get('Role  Category', 'Unknown')
 
                 # If the family is not already in the dictionary, add it with a count of 1
                 if family not in family_counts:
                     family_counts[family] = 1
                 else:
-                    family_counts[family] += 1
+                    family_counts [family] += 1
 
             # Print the count for each family
             for family, count in family_counts.items():
