@@ -154,26 +154,76 @@ df = pd.read_sql_query(QUERY1, conn)
 
 
 # Stacked Charts
+# # your code goes here
+# #step 1: get the data needed
+# QUERY = """
+# SELECT WorkWeekHrs, CodeRevHrs, Age
+# FROM master
+# """
+# df_age = pd.read_sql_query(QUERY,conn)
+# #print(df_age.shape)
+# print(df_age.head(10))
+#
+# # group respondents by age and apply median() function
+# df_age = df_age.groupby('Age', axis=0).median()
+# #df_age = df_age[30:35]
+# #print(df_age.shape)
+#
+# # step 2: plot data
+# df_age[30:35].plot(kind='bar', figsize=(10, 6), stacked=True)
+# print(df_age.head(10))
+# plt.xlabel('Age') # add to x-label to the plot
+# plt.ylabel('Hours') # add y-label to the plot
+# plt.title('Median Hours by Age') # add title to the plot
+# plt.show()
+
+
+# Line Chart
+# #step 1: get the data needed
+# QUERY = """
+# SELECT ConvertedComp, Age
+# FROM master
+# """
+# df_comp = pd.read_sql_query(QUERY,conn)
+# print(df_comp[25:30].head())
+#
+# # group respondents by age and apply median() function
+# df_comp = df_comp.groupby('Age', axis=0).median()
+# print(df_comp[25:30].head())
+#
+#
+# # step 2: plot data
+# df_comp[45:60].plot(kind='line', figsize=(10, 6), stacked=True)
+#
+# plt.xlabel('Age') # add to x-label to the plot
+# plt.ylabel('$') # add y-label to the plot
+# plt.title('Median Compensation by Age') # add title to the plot
+#
+# plt.show()
+
+
+# Bar Chart
 # your code goes here
 #step 1: get the data needed
 QUERY = """
-SELECT WorkWeekHrs, CodeRevHrs, Age
+SELECT MainBranch, count(MainBranch) as Count
 FROM master
+GROUP BY MainBranch
 """
-df_age = pd.read_sql_query(QUERY,conn)
-#print(df_age.shape)
-print(df_age.head(10))
+df_main = pd.read_sql_query(QUERY,conn)
+print(df_main.head())
 
 # group respondents by age and apply median() function
-df_age = df_age.groupby('Age', axis=0).median()
-#df_age = df_age[30:35]
-#print(df_age.shape)
+#df_main = df_main.groupby('Age', axis=0).median()
+
 
 # step 2: plot data
-df_age[30:35].plot(kind='bar', figsize=(10, 6), stacked=True)
-print(df_age.head(10))
-plt.xlabel('Age') # add to x-label to the plot
-plt.ylabel('Hours') # add y-label to the plot
-plt.title('Median Hours by Age') # add title to the plot
+df_main.plot(kind='barh', figsize=(10, 6))
 
+plt.xlabel('Number of Respondents') # add to x-label to the plot
+plt.ylabel('Main Branch') # add y-label to the plot
+plt.title('Number of Respondents by Main Branch') # add title to the plot
 plt.show()
+
+
+conn.close()
