@@ -41,6 +41,7 @@ df_tot.columns = ['year', 'total']
 print(df_tot.head(20))
 #_______________________________________________________________
 df_tot.plot(kind='scatter', x='year', y='total', figsize=(10, 6), color='darkblue')
+plt.show()
 
 x = df_tot['year']      # year on x-axis
 y = df_tot['total']     # total on y-axis

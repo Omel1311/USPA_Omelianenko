@@ -45,3 +45,4 @@ plt.ylabel('Number of Immigrants')
 plt.xlabel('Years')
 
 plt.show()
+
