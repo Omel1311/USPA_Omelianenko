@@ -81,17 +81,17 @@ df = pd.read_sql_query(QUERY1, conn)
 
 
 # Scatter Plots
-# QUERY = """
-# SELECT Age, WorkWeekHrs
-# FROM master
-# """
-# df = pd.read_sql_query(QUERY,conn)
-# x=df['Age']
-# y = df['WorkWeekHrs']
-# sns.regplot(x=x, y=y, scatter_kws={'color': 'darkblue'}, line_kws={'color': 'red'})
-# # plt.ylim(0,200)
-# # plt.xlim(0,80)
-# # plt.show()
+QUERY = """
+SELECT Age, WorkWeekHrs
+FROM master
+"""
+df = pd.read_sql_query(QUERY,conn)
+x=df['Age']
+y = df['WorkWeekHrs']
+sns.regplot(x=x, y=y, scatter_kws={'color': 'darkblue'}, line_kws={'color': 'red'})
+plt.ylim(0,200)
+plt.xlim(0,80)
+plt.show()
 
 
 
@@ -137,7 +137,7 @@ df = pd.read_sql_query(QUERY1, conn)
 # df['percent'] = 100 * df['Count']/total
 # df.set_index('DatabaseDesireNextYear')
 # print(df)
-#
+# #
 #
 # # autopct create %, start angle represent starting point
 # df['Count'].plot(kind='pie',
@@ -149,9 +149,8 @@ df = pd.read_sql_query(QUERY1, conn)
 #
 # plt.title('Top 5 databases that respondents wish to learn next year')
 # plt.axis('equal') # Sets the pie chart to look like a circle.
-#
 # plt.show()
-
+#
 
 # Stacked Charts
 # # your code goes here
@@ -179,27 +178,27 @@ df = pd.read_sql_query(QUERY1, conn)
 
 
 # Line Chart
-# #step 1: get the data needed
-# QUERY = """
-# SELECT ConvertedComp, Age
-# FROM master
-# """
-# df_comp = pd.read_sql_query(QUERY,conn)
-# print(df_comp[25:30].head())
-#
-# # group respondents by age and apply median() function
-# df_comp = df_comp.groupby('Age', axis=0).median()
-# print(df_comp[25:30].head())
-#
-#
-# # step 2: plot data
-# df_comp[45:60].plot(kind='line', figsize=(10, 6), stacked=True)
-#
-# plt.xlabel('Age') # add to x-label to the plot
-# plt.ylabel('$') # add y-label to the plot
-# plt.title('Median Compensation by Age') # add title to the plot
-#
-# plt.show()
+#step 1: get the data needed
+QUERY = """
+SELECT ConvertedComp, Age
+FROM master
+"""
+df_comp = pd.read_sql_query(QUERY,conn)
+print(df_comp[25:30].head())
+
+# group respondents by age and apply median() function
+df_comp = df_comp.groupby('Age', axis=0).median()
+print(df_comp[25:30].head())
+
+
+# step 2: plot data
+df_comp[25:30].plot(kind='line', figsize=(10, 6), stacked=True)
+
+plt.xlabel('Age') # add to x-label to the plot
+plt.ylabel('$') # add y-label to the plot
+plt.title('Median Compensation by Age') # add title to the plot
+
+plt.show()
 
 
 # Bar Chart
@@ -217,13 +216,13 @@ print(df_main.head())
 #df_main = df_main.groupby('Age', axis=0).median()
 
 
-# step 2: plot data
-df_main.plot(kind='barh', figsize=(10, 6))
-
-plt.xlabel('Number of Respondents') # add to x-label to the plot
-plt.ylabel('Main Branch') # add y-label to the plot
-plt.title('Number of Respondents by Main Branch') # add title to the plot
-plt.show()
+# # step 2: plot data
+# df_main.plot(kind='barh', figsize=(10, 6))
+#
+# plt.xlabel('Number of Respondents') # add to x-label to the plot
+# plt.ylabel('Main Branch') # add y-label to the plot
+# plt.title('Number of Respondents by Main Branch') # add title to the plot
+# plt.show()
 
 
 conn.close()
