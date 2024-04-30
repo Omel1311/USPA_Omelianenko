@@ -50,13 +50,13 @@ Z = df[['horsepower', 'curb-weight', 'engine-size', 'highway-mpg']]
 # print(lm2.intercept_)
 
 
-# # Regression Plot 1
-# width = 12
-# height = 10
-# # plt.figure(figsize=(width, height))
-# # sns.regplot(x="highway-mpg", y="price", data=df)
-# # plt.ylim(0,)
-# # plt.show()
+# Regression Plot 1
+width = 12
+height = 10
+plt.figure(figsize=(width, height))
+sns.regplot(x="highway-mpg", y="price", data=df)
+plt.ylim(0,)
+plt.show()
 
 
 # # Regression Plot 2

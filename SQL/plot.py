@@ -3,10 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-dataset_url = ('https://data.cityofchicago.org/resource/jcxq-k9xf.csv')
+dataset_url = ('C:\\Users\\0487\\Desktop\\22222.csv')
 df = pd.read_csv(dataset_url)
-hardship_index = pd.read_sql_query()
-pd.set_option('display.max.columns', None)
+
 print(df.head())
-df.plot(x='community_area_name', y='hardship_index', figsize=(7,5))
+df.plot(x='Indicator', y='Total by sea ports %', figsize=(7,5))
 plt.show()

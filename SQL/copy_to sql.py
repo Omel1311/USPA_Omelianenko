@@ -4,14 +4,15 @@ from config import host, user, password, db_name
 from sqlalchemy import create_engine
 
 
-
-data = pd.read_excel('C:\\Users\\0487\\Desktop\\w.xlsx')
-pd.set_option('display.max_columns', 100)
-pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
+pd.set_option('display.max_rows', 500)
 
+data = pd.read_excel('C:\\Users\\0487\\Desktop\\f.xlsx')
+
+data=data.iloc[:,:250]
 # data = data.iloc[:,:10]
-print(data.head())
+print(data.head(200))
 
 try:
      connection = pymysql.connect(
@@ -27,7 +28,7 @@ try:
                                    pw=password,
                                    db=db_name))
 
-     data.to_sql('w', con=engine, if_exists='append')
+     data.to_sql('3fyy', con=engine, if_exists='append')
 
 except Exception as ex:
     print("Connection refused...")
