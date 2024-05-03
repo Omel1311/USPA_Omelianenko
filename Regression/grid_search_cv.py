@@ -2,6 +2,7 @@ from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.datasets import load_iris
 
+# подбор гипперпараметров +кросс-валидация
 # Загружаем набор данных Iris
 data = load_iris()
 X = data.data
@@ -12,8 +13,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 # Задаем сетку возможных значений гиперпараметров
 param_grid = {
-    'C': [0.1, 1, 10],
-    'kernel': ['linear', 'rbf', 'sigmoid']
+    'C': [0.1, 1, 78, 10],
+    'kernel': ['linear', 'rbf', 'sigmoid'],
+    'degree': [1,3,0],
 }
 
 # Создаем модель SVM
