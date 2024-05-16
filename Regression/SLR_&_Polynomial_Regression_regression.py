@@ -12,18 +12,24 @@ pd.set_option('display.width', 500)  # Установка ширины отоб�
 pd.set_option('display.max_rows', 500)  # Установка максимального количества отображаемых строк в pandas
 
 df = pd.read_csv("C://Users//0487//Downloads//Housing.csv")  # Чтение данных из файла Housing.csv в DataFrame df
+print(df.head())
+
+
 
 def price_formatter(x, pos):
     return f'{x/1e6:.1f}M'  # Функция форматирования чисел для отображения в миллионах с одним десятичным знаком
 
 # Функция для построения графика полиномиальной регрессии
 def PlotPolly(model, x, y, Name):
+    X_mean = np.mean(x)
+    Y_mean = np.mean(y)
     x_new = np.linspace(x.min(), x.max(), 100)  # Генерация новых значений x для плавной линии регрессии
     y_new = model(x_new)  # Получение предсказанных значений на основе модели
 
     fig, axs = plt.subplots(1, 2, figsize=(12, 5))  # Создание графика с двумя осями
 
     axs[0].plot(x, y, '.', alpha=0.5)  # Отображение исходных данных точками синего цвета
+    axs[0].scatter(X_mean, Y_mean,marker='+', color='red')
     axs[0].plot(x_new, y_new, '-', color='green')  # Отображение полиномиальной регрессии зеленой линией
     axs[0].set_title('Polynomial Fit with Matplotlib for duration - Price')  # Установка заголовка для первого графика
     axs[0].set_facecolor((0.898, 0.898, 0.898))  # Установка цвета фона графика
@@ -46,6 +52,10 @@ def PlotPolly(model, x, y, Name):
     plt.show()
     plt.close()
 
+
+
+    print(f'X_mean = {X_mean}, Y_mean = {Y_mean}')  # Вывод среднего значения X_mean, Y_mean)
+
 x = df['area']
 y = df['price']
 
@@ -57,12 +67,14 @@ PlotPolly(p, x, y, 'area')
 
 
 def PlotReg(model_poly, model_lin, x, y, Name):
+    X_mean = np.mean(x)
+    Y_mean = np.mean(y)
     x_new = np.linspace(x.min(), x.max(), 100)  # Используем минимальное и максимальное значение x для более равномерного распределения точек
     y_new_poly = model_poly(x_new)
     y_new_lin = model_lin.predict(x_new.reshape(-1, 1))
-
     fig, ax = plt.subplots()
     ax.plot(x, y, '.', alpha=0.5)  # Точки в синем цвете
+    ax.scatter(X_mean, Y_mean,marker='o', color='black', label='mean value')
     ax.plot(x_new, y_new_poly, '-', color='green', label='Polynomial Regression')  # Зеленая линия полинома
     ax.plot(x_new, y_new_lin, '--', color='red', label='Linear Regression')  # Красная пунктирная линия линейной регрессии
     ax.set_title('Linear and Polynomial Regression Comparison for duration - Price')
