@@ -30,7 +30,7 @@ plt.ylim(0,)
 # Отримання координат лінії регресії
 x_vals = df['floors']
 y_vals = lm.intercept_ + lm.coef_ * x_vals
-r_squared =
+r_squared = r2_score(y_vals, df['price'])
 # Відображення лінії регресії та анотації R^2
 plt.plot(x_vals, y_vals, color='peru', label='Regression Line')
 plt.annotate(f'R^2 = {r_squared:.2f}', xy=(0.5, 0.9), xycoords='axes fraction', fontsize=12, color='blue')

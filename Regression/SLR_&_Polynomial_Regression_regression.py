@@ -74,7 +74,8 @@ def PlotReg(model_poly, model_lin, x, y, Name):
     y_new_lin = model_lin.predict(x_new.reshape(-1, 1))
     fig, ax = plt.subplots()
     ax.plot(x, y, '.', alpha=0.5)  # Точки в синем цвете
-    ax.scatter(X_mean, Y_mean,marker='o', color='black', label='mean value')
+    ax.scatter(X_mean, Y_mean, marker='o', color='black',
+               label=f'Mean: {x.name}, {int(round(X_mean))}, {y.name}, {int(round(Y_mean))}')  # Отображение названий колонок x и y
     ax.plot(x_new, y_new_poly, '-', color='green', label='Polynomial Regression')  # Зеленая линия полинома
     ax.plot(x_new, y_new_lin, '--', color='red', label='Linear Regression')  # Красная пунктирная линия линейной регрессии
     ax.set_title('Linear and Polynomial Regression Comparison for duration - Price')
@@ -89,7 +90,7 @@ def PlotReg(model_poly, model_lin, x, y, Name):
     plt.show()
     plt.close()
 
-x = df['area']
+x = df['parking']
 y = df['price']
 
 # Polynomial regression
