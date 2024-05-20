@@ -34,12 +34,14 @@ from sklearn.metrics import accuracy_score
 
 # Загрузим данные
 iris = load_iris()
+print(iris.DESCR)
 X = iris.data
 y = iris.target
 
 # Разделим данные на тренировочный и тестовый наборы
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
+print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
+print(X_train[0:5])
 # Создадим Pipeline
 pipeline = Pipeline([
     ('scaler', StandardScaler()),        # Шаг масштабирования данных
