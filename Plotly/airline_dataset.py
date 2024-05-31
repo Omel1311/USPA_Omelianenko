@@ -60,8 +60,8 @@ x= bar_data['DestState']
 y = bar_data['Flights']
 
 fig = px.bar( x=x, y=y, title='Total number of flights to the destination state split by reporting air')
-# fig.write_html("bar_interactive.html")
-# # fig.show()
+fig.write_html("bar_interactive.html")
+fig.show()
 
 
 # 4.Histogram:

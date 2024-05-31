@@ -8,7 +8,7 @@ pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 pd.set_option('display.max_rows', 500)
 
-data = pd.read_excel('C:\\Users\\0487\\Desktop\\f.xlsx')
+data = pd.read_excel('C://Users//0487//Desktop//Омельяненко//ПО//Odesa1.xlsx')
 
 data=data.iloc[:,:250]
 # data = data.iloc[:,:10]
@@ -28,7 +28,7 @@ try:
                                    pw=password,
                                    db=db_name))
 
-     data.to_sql('3fyy', con=engine, if_exists='append')
+     data.to_sql('odesa1', con=engine, if_exists='append')
 
 except Exception as ex:
     print("Connection refused...")

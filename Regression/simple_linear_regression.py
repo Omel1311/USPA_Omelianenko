@@ -54,4 +54,6 @@ plt.ylabel('Predicted Price')
 plt.title('Actual vs Predicted Prices')
 plt.show()
 
+print('The R-square is: ', lm.score(X, y))
+
 

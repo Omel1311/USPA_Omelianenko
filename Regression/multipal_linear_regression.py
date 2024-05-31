@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
 
 pd.set_option('display.max_columns', 100)
 pd.set_option('display.width', 500)
@@ -16,8 +17,6 @@ print(df.head())
 Z = df[['area', 'bedrooms', 'bathrooms']]
 Y = df['price']
 
-sns.histplot(data=df, x='price', bins=20)
-plt.show()
 
 # Multiple LinearRegression
 lm = LinearRegression()
@@ -44,7 +43,7 @@ plt.show()
 plt.close()
 
 
-# Создание Multiple LinearRegression pipeline
+# PIPLINE Multiple LinearRegression pipeline
 pipeline = Pipeline([
     ('scaler', StandardScaler()),  # Масштабирование признаков
     ('regressor', LinearRegression())  # Линейная регрессия
@@ -69,7 +68,16 @@ plt.ylabel('Z')
 plt.legend(title='Legend', title_fontsize='large', loc='best', labels=['Actual Value', 'Fitted Values'])
 plt.show()
 
+# Оценим точность модели
 
+# Mean Squared Error
+mse = mean_squared_error(Y, y_pred)
+print(f'Mean Squared Error: {mse:.2f}')
+
+
+# R^2
+r2 = (r2_score(Y, y_pred))
+print(f'R^2: {r2:.2f}')
 
 
 # 2 графика

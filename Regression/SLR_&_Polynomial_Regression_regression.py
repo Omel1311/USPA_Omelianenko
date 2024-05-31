@@ -1,8 +1,6 @@
 import pandas as pd  # Импорт библиотеки pandas и присвоение ей псевдонима pd
 import numpy as np  # Импорт библиотеки numpy и присвоение ей псевдонима np
 import matplotlib.pyplot as plt  # Импорт модуля matplotlib.pyplot для построения графиков и присвоение ему псевдонима plt
-import warnings  # Импорт модуля warnings для управления предупреждениями
-warnings.filterwarnings('ignore')  # Установка фильтра для игнорирования предупреждений
 import seaborn as sns  # Импорт библиотеки seaborn для визуализации данных
 from sklearn.linear_model import LinearRegression  # Импорт класса LinearRegression из модуля sklearn.linear_model
 from matplotlib.ticker import FuncFormatter  # Импорт класса FuncFormatter для форматирования графика
@@ -23,6 +21,7 @@ def price_formatter(x, pos):
 def PlotPolly(model, x, y, Name):
     X_mean = np.mean(x)
     Y_mean = np.mean(y)
+
     x_new = np.linspace(x.min(), x.max(), 100)  # Генерация новых значений x для плавной линии регрессии
     y_new = model(x_new)  # Получение предсказанных значений на основе модели
 
@@ -74,7 +73,7 @@ def PlotReg(model_poly, model_lin, x, y, Name):
     y_new_lin = model_lin.predict(x_new.reshape(-1, 1))
     fig, ax = plt.subplots()
     ax.plot(x, y, '.', alpha=0.5)  # Точки в синем цвете
-    ax.scatter(X_mean, Y_mean, marker='o', color='black',
+    ax.scatter(X_mean, Y_mean, marker='+', color='r',
                label=f'Mean: {x.name}, {int(round(X_mean))}, {y.name}, {int(round(Y_mean))}')  # Отображение названий колонок x и y
     ax.plot(x_new, y_new_poly, '-', color='green', label='Polynomial Regression')  # Зеленая линия полинома
     ax.plot(x_new, y_new_lin, '--', color='red', label='Linear Regression')  # Красная пунктирная линия линейной регрессии
@@ -90,8 +89,8 @@ def PlotReg(model_poly, model_lin, x, y, Name):
     plt.show()
     plt.close()
 
-x = df['parking']
-y = df['price']
+# x = df['parking']
+# y = df['price']
 
 # Polynomial regression
 f_poly = np.polyfit(x, y, 3)

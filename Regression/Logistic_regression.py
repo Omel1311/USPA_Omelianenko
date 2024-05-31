@@ -1,44 +1,64 @@
 # Импортируем необходимые библиотеки
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 
-# Создадим двумерный набор данных
-X, y = make_classification(n_samples=100, n_features=2, n_informative=2, n_redundant=0, random_state=42)
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000)
+pd.set_option('display.max_rows', 500)
 
-# Разделим данные на тренировочный и тестовый наборы
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+df = pd.read_excel("C://Users//0487//Desktop//Омельяненко//ПО//Odesa1.xlsx", sheet_name='Одеса')
+print(df.head())
 
-# Создадим Pipeline
-pipeline = Pipeline([
-    ('scale', StandardScaler()),           # Шаг масштабирования данных
-    ('classifier', LogisticRegression())   # Шаг логистической регрессии
-])
-
-# Обучим модель
-pipeline.fit(X_train, y_train)
-
-# Построим сетку для предсказаний
-h = .02  # Размер шага в сетке
-x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
-xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
-
-# Получим предсказания для каждого элемента сетки
-Z = pipeline.predict(np.c_[xx.ravel(), yy.ravel()])
-Z = Z.reshape(xx.shape)
-
-# Построим график
 plt.figure(figsize=(10, 6))
-plt.contourf(xx, yy, Z, alpha=0.8, cmap=plt.cm.Paired)
-plt.scatter(X_train[:, 0], X_train[:, 1], c=y_train, edgecolors='k', marker='o', label='Train data')
-plt.scatter(X_test[:, 0], X_test[:, 1], c=y_test, edgecolors='k', marker='x', label='Test data')
-plt.xlabel('Feature 1')
-plt.ylabel('Feature 2')
-plt.title('Logistic Regression Decision Boundary')
-plt.legend()
+
+# ax=sns.countplot(x="Причал", data=df, hue="Портовий оператор", color='r')
+ax=sns.countplot(x="Портовий оператор", data=df, color='r')
+# Добавление значений к каждому столбику
+# for p in ax.patches:
+#     ax.annotate(format(p.get_height(), '.0f'),
+#                 (p.get_x() + p.get_width() / 2., p.get_height()),
+#                 ha = 'center', va = 'center',
+#                 xytext = (0, 9),
+#                 textcoords = 'offset points')
+# ax.set_title('Графік завантаженості причалів Одеськог порту')
+# ax.set_facecolor((0.898, 0.898, 0.898))
+# ax.set_xlabel("Кількість портових операторів, що викорстсвуюють причал")
+# ax.set_xticklabels(ax.get_xticks(), rotation=90)
+# ax.set_ylabel("№ Причалу")
+
+plt.show()
+
+
+plt.figure(figsize=(10, 6))
+
+# Count plot for port operators
+ax = sns.countplot(x="Портовий оператор", data=df, color='r')
+
+# Adding values to each bar
+for p in ax.patches:
+    ax.annotate(format(p.get_height(), '.0f'),
+                (p.get_x() + p.get_width() / 2., p.get_height()),
+                ha='center', va='center',
+                xytext=(0, 9),
+                textcoords='offset points')
+
+# Title and labels
+ax.set_title('Графік завантаженості причалів Одеського порту')
+ax.set_facecolor((0.898, 0.898, 0.898))
+ax.set_xlabel("Кількість портових операторів, що використовують причал")
+
+# Rotate x-axis labels to vertical
+ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
+
+# Set ylabel
+ax.set_ylabel("Кількість")
+
+plt.tight_layout()
 plt.show()

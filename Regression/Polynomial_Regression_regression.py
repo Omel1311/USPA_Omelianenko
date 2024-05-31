@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
 import seaborn as sns
-from sklearn.linear_model import LinearRegression
 from matplotlib.ticker import FuncFormatter # форматирование графика мииллионы, тТЫСЯЧИ И ТД.
 
 pd.set_option('display.max_columns', 100)
