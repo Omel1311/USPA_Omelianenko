@@ -12,6 +12,7 @@ pd.set_option('display.max_rows', 500)
 
 df = pd.read_csv("C://Users//0487//Downloads//Housing.csv")
 print(df.head())
+print('*' * 100)
 
 
 Z = df[['area', 'bedrooms', 'bathrooms']]
@@ -71,16 +72,19 @@ plt.show()
 # Оценим точность модели
 
 # Mean Squared Error
+print('*' * 100)
 mse = mean_squared_error(Y, y_pred)
 print(f'Mean Squared Error: {mse:.2f}')
+print('*' * 100)
 
 
 # R^2
 r2 = (r2_score(Y, y_pred))
 print(f'R^2: {r2:.2f}')
+print('*' * 100)
 
 
-# 2 графика
+# 2 графика histplot
 # Распределение реальных цен
 plt.figure(figsize=(10, 5))
 plt.subplot(1, 2, 1)

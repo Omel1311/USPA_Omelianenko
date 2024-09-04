@@ -67,13 +67,13 @@ plt.show()
 
 
 #_______________________________________________________________
-# #  Verify correlation (corr) | heatmap
-
-# # print('corr', df[["peak-rpm","highway-mpg","price"]].corr())
-# # sns.set (rc = {'figure.figsize':(8, 8)})
-# # dataplot = sns.heatmap(df[["peak-rpm","highway-mpg","price"]].corr(), cmap="YlGnBu", annot=True)
-# # plt.show()
+ # Verify correlation (corr) | heatmap
 #
+print('corr', df[["peak-rpm","highway-mpg","price"]].corr())
+sns.set (rc = {'figure.figsize':(8, 8)})
+dataplot = sns.heatmap(df[["peak-rpm","highway-mpg","price"]].corr(), cmap="YlGnBu", annot=True)
+plt.show()
+
 #______________________________________________________________
 # #  Residual Plot
 

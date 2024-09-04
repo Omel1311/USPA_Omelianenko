@@ -1,9 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
+
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error, r2_score
-import seaborn as sns
+
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -16,17 +18,18 @@ pd.set_option('display.max_rows', 500)
 # df = pd.read_csv("C://Users//0487//Downloads//fly//Clean_Dataset.csv")
 df = pd.read_csv("C://Users//0487//Downloads//CarPrice_Assignment.csv")
 
-
 print(df.head())
 print(df.shape)
 print("*"*100)
+
+
 
 # MULTI POLINOM
 
 Z = df[['enginesize', 'curbweight', 'citympg', 'highwaympg']]
 Y = df['price']
 
-pr = PolynomialFeatures(degree=1)  # Создание объекта для генерации полиномиальных признаков
+pr = PolynomialFeatures(degree=3)  # Создание объекта для генерации полиномиальных признаков
 lm = LinearRegression()  # Создание объекта для модели линейной регрессии
 
 Z_pr = pr.fit_transform(Z)  # Преобразование входных признаков Z в полиномиальные признаки
@@ -44,21 +47,21 @@ plt.title('Actual vs Fitted Values Multiple Linear Regression')
 plt.xlabel('Price (in dollars)')
 plt.ylabel('Density')
 plt.legend(title='Legend', title_fontsize='large', loc='best', labels=['Actual Value', 'Fitted Values'])
-# Оценим точность модели
 
+# Оценим точность модели 1
 # Mean Squared Error
 mse = mean_squared_error(Y, Y_pred)
-print(f'Mean Squared Error: {mse:.2f}')
+print(f'Mean Squared Error MULTI POLINOM: {mse:.2f}')
 
 # R^2
 r2 = (r2_score(Y, Y_pred))
-print(f'R^2: {r2:.3f}')
+print(f'R^2 MULTI POLINOM: {r2:.3f}')
 
 
 
 # PIPLINE Multiple LinearRegression
 pipeline = Pipeline([
-    ('poly', PolynomialFeatures(degree=1)),  # Полиномиальные признаки степени 2
+    ('poly', PolynomialFeatures(degree=3)),  # Полиномиальные признаки степени 3
     ('scaler', StandardScaler()),  # Масштабирование признаков
     ('regressor', LinearRegression())  # Линейная регрессия
 ])
@@ -86,9 +89,9 @@ plt.show()
 
 # Mean Squared Error
 mse = mean_squared_error(Y, y_pred)
-print(f'Mean Squared Error: {mse:.2f}')
+print(f'Mean Squared Error pipline: {mse:.2f}')
 
 # R^2
 r2 = (r2_score(Y, y_pred))
-print(f'R^2: {r2:.3f}')
+print(f'R^2 pipline: {r2:.3f}')
 

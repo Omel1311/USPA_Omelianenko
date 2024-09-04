@@ -30,8 +30,9 @@ def PlotPolly(model, x, y, Name):
     axs[0].plot(x, y, '.', alpha=0.5)  # Отображение исходных данных точками синего цвета
     axs[0].scatter(X_mean, Y_mean,marker='+', color='red')
     axs[0].plot(x_new, y_new, '-', color='green')  # Отображение полиномиальной регрессии зеленой линией
+
     axs[0].set_title('Polynomial Fit with Matplotlib for duration - Price')  # Установка заголовка для первого графика
-    axs[0].set_facecolor((0.898, 0.898, 0.898))  # Установка цвета фона графика
+    axs[0].set_facecolor((0.898, 0.898, 0.898))  # Установка цвета фона графика в формате RGBA
     axs[0].set_xlabel(Name)  # Установка подписи оси x
     axs[0].set_ylabel('price')  # Установка подписи оси y
 
@@ -39,7 +40,9 @@ def PlotPolly(model, x, y, Name):
     X = x.values.reshape(-1, 1)  # Преобразование x в двумерный массив для sklearn
     Y = y.values.reshape(-1, 1)  # Преобразование y в двумерный массив для sklearn
     lm.fit(X, Y)  # Обучение модели линейной регрессии
-    Yhat1 = lm.predict(X)  # Предсказание значений для сравнения
+    lm.predict(X)  # Предсказание значений для сравнения
+
+    # Отображение Грфика 2
 
     sns.regplot(x=x, y=y, data=df, scatter_kws={'color': 'seagreen'}, line_kws={'color': 'peru'}, ax=axs[1])  # Отображение линейной регрессии с помощью seaborn
     axs[1].set_title('Linear Regression for Price ~ Area')  # Установка заголовка для второго граф
@@ -89,11 +92,9 @@ def PlotReg(model_poly, model_lin, x, y, Name):
     plt.show()
     plt.close()
 
-# x = df['parking']
-# y = df['price']
 
-# Polynomial regression
-f_poly = np.polyfit(x, y, 3)
+# Polynomial regression (График 3)
+f_poly = np.polyfit(x, y, 4)
 p_poly = np.poly1d(f_poly)
 
 # Linear regression
@@ -104,3 +105,7 @@ lm.fit(X, Y)
 
 PlotReg(p_poly, lm, x, y, 'area')
 
+print('corr', df[["area","parking","price","bathrooms", "bedrooms"]].corr())
+sns.set (rc = {'figure.figsize':(8, 8)})
+dataplot = sns.heatmap(df[["area","parking","price","bathrooms", "bedrooms"]].corr(),  cmap="YlGnBu", annot=True)
+plt.show()
