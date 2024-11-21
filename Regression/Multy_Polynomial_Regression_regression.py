@@ -68,6 +68,8 @@ pipeline = Pipeline([
 # Обучение модели на всех данных
 pipeline.fit(Z, Y)
 
+de = df.max()
+print()
 # Прогнозирование на тех же данных
 y_pred = pipeline.predict(Z)
 print(y_pred[0:5])

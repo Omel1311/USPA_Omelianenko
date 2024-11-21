@@ -8,6 +8,7 @@ print(data, type(data))
 # Connect to the database
 try:
     connection = pymysql.connect(
+
         host=host,
         port=3306,
         user=user,

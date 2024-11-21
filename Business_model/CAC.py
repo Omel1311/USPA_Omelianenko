@@ -4,8 +4,10 @@
 def calculate_cac(total_marketing_costs, new_customers_acquired):
     return total_marketing_costs / new_customers_acquired
 
-total_marketing_costs = 10000  # Общие затраты на маркетинг в долларах
+total_marketing_costs = int(input("Введите общие затраты на маркетинг в долларах: "))  # Общие затраты на маркетинг в долларах
+
 new_customers_acquired = 500  # Количество новых клиентов
+
 
 cac = calculate_cac(total_marketing_costs, new_customers_acquired)
 print(f"CAC составляет ${cac} на каждого нового клиента")
