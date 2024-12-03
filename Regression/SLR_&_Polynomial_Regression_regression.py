@@ -19,8 +19,8 @@ def price_formatter(x, pos):
 
 # Функция для построения графика полиномиальной регрессии
 def PlotPolly(model, x, y, Name):
-    X_mean = np.mean(x)
-    Y_mean = np.mean(y)
+    X_mean = np.median(x)
+    Y_mean = np.median(y)
 
     x_new = np.linspace(x.min(), x.max(), 100)  # Генерация новых значений x для плавной линии регрессии
     y_new = model(x_new)  # Получение предсказанных значений на основе модели

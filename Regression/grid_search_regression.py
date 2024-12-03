@@ -19,9 +19,9 @@ print(df[(df['furnishingstatus'] == 'furnished') & (df['basement']== 'yes')].hea
 print(df[(df['bathrooms'] > 2)]['price'].min())
 
 # Преобразование категориальных признаков в числовые с помощью OneHotEncoding
-# df = pd.get_dummies(df, columns=['prefarea', 'furnishingstatus'])
-# print(df.head())
-# print(df.info())
+df = pd.get_dummies(df, columns=['prefarea', 'furnishingstatus'])
+print(df.head())
+print(df.info())
 # Разделение данных на признаки (X) и целевую переменную (y)
 X = df.drop('price', axis=1)
 y = df['price']

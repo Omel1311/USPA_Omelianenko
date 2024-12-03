@@ -17,7 +17,8 @@ X, Y = np.meshgrid(x, y)
 Z = z_function(X,Y)
 
 
-current_pos = (0.7361, -0.8275, z_function(0.7361, -0.8275))
+# current_pos = (0.7361, -0.8275, z_function(0.7361, -0.8275))
+current_pos = (-0.8, 0.8, z_function(-0.8, 0.8))
 
 learning_rate = 0.01
 

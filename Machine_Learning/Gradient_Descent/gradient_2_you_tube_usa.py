@@ -15,7 +15,7 @@ def y_derevative(x):
 x = np.arange(-100, 100, 0.1)
 y = y_function(x)
 
-current_position = (90, y_function(90))
+current_position = (99, y_function(99))
 
 learning_rate = 0.01
 
@@ -24,7 +24,6 @@ for _ in range(1000):
     new_y = y_function(new_x)
     current_position = (new_x, new_y)
     print(current_position)
-
 
 
     plt.scatter(current_position[0], current_position[1], c='r')
