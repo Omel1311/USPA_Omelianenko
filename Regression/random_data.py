@@ -19,6 +19,10 @@ prices = np.clip(prices, 10, 120)  # Ensure the price stays within a reasonable 
 sales = 500 * np.exp(-0.05 * prices) + np.random.normal(scale=10, size=1000)
 sales = np.maximum(sales, 0)  # Ensure sales are not negative
 
+# Add some outliers to the sales data
+outlier_indices = np.random.choice(len(sales), size=10, replace=False)
+sales[outlier_indices] = sales[outlier_indices] * np.random.uniform(1.5, 3.0, size=10)
+
 # Create the DataFrame
 df = pd.DataFrame({'Date': date_range, 'Price': prices, 'Sales': sales.astype(int)})
 
@@ -33,6 +37,7 @@ plt.xlabel('Price')
 plt.ylabel('Sales')
 plt.grid(True)
 plt.show()
+
 
 
 df.to_excel('C:\\Users\\0487\\Desktop\\random_data2.xlsx', index=False)

@@ -102,7 +102,7 @@ def KDEPlot_ridge(x, y, Name, ax):
     ax.legend(title='Legend', title_fontsize='large', loc='best', labels=['Actual Value', 'Fitted Values'])
 
 # Второй график: Сравнение линейной и полиномиальной регрессии
-def PlotReg(model_poly, poly_transformer, model_lin, x, y, Name, ax):
+def PlotReg_ridge(model_poly, poly_transformer, model_lin, x, y, Name, ax):
     # Создание новых точек для построения графика
     x_new = np.linspace(x.min(), x.max(), 100).reshape(-1, 1)
 
