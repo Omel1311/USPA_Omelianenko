@@ -4,7 +4,7 @@ import pandas as pd
 
 # Исторические данные
 prices = np.array([5, 10, 15, 20, 25])
-sales = np.array([200,190 , 185, 180, 130])
+sales = np.array([200,190 , 185, 100, 90])
 
 # Функция прибыли
 # Прибыль = Цена * Продажи
@@ -15,6 +15,7 @@ def profit(price, sales):
 
 # Определение оптимальной цены для максимизации прибыли
 profits = [profit(prices[i], sales[i]) for i in range(len(prices))]
+print(profits)
 optimal_index = np.argmax(profits)
 optimal_price = prices[optimal_index]
 optimal_profit = profits[optimal_index]
@@ -35,8 +36,8 @@ ax1.legend()
 
 # График продаж (столбчатая диаграмма)
 for i in range(len(prices)):
-    ax2.bar(prices[i], sales[i], color='skyblue')
-    ax2.text(prices[i], sales[i] + 5, f'{sales[i]}', ha='center')
+    ax2.bar(prices[i], profits[i], color='skyblue')
+    ax2.text(prices[i], profits[i] + 5, f'{sales[i]}', ha='center')
 ax2.set_xlabel('Цена (USD)')
 ax2.set_ylabel('Продажи (единицы)')
 ax2.set_title('Продажи в зависимости от цены')

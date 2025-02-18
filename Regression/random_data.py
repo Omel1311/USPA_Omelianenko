@@ -19,9 +19,9 @@ prices = np.clip(prices, 10, 120)  # Ensure the price stays within a reasonable 
 sales = 500 * np.exp(-0.05 * prices) + np.random.normal(scale=10, size=1000)
 sales = np.maximum(sales, 0)  # Ensure sales are not negative
 
-# Add some outliers to the sales data
-outlier_indices = np.random.choice(len(sales), size=10, replace=False)
-sales[outlier_indices] = sales[outlier_indices] * np.random.uniform(1.5, 3.0, size=10)
+# Add more outliers to the sales data
+outlier_indices = np.random.choice(len(sales), size=100, replace=False)  # Increase number of outliers to 30
+sales[outlier_indices] = sales[outlier_indices] * np.random.uniform(1.5, 4.0, size=100)  # Stronger outliers
 
 # Create the DataFrame
 df = pd.DataFrame({'Date': date_range, 'Price': prices, 'Sales': sales.astype(int)})
