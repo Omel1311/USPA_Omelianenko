@@ -14,7 +14,7 @@ e = np.add(a,q)
 print(e)
 print(a+3)
 
-l = np.linspace(1,10, num=10)
+l = np.linspace(1,10, num=3)
 print(l)
 
 for x in a:

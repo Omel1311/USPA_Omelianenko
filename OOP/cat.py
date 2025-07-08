@@ -1,24 +1,22 @@
-class Car:
-    MINIMUM_SPEED = 1
-    MAXIMUM_SPEED = 10
-    @classmethod
-    def validate_speed(cls, speed):
-       return cls.MINIMUM_SPEED <= speed <= cls.MAXIMUM_SPEED
+class Risk:
+    def __init__(self, name, level, color, weight):
+        self.name = name
+        self.level = level
+        self.color = color
+        self.weight = weight
 
-    def __init__(self, x=0, y=0):
-        self.x = self.y = 0
-        if self.validate_speed(x) and self.validate_speed(y):
-            self.__x = x
-            self.__y = y
-
-    @staticmethod
-    def speed(p, r):
-        print(p * r)
     def __str__(self):
-        print (f'({self.x}, {self.y}))')
+        return f"{self.name} {self.level} {self.color} {self.weight}"
 
-mazda = Car(10, 9)
-print(mazda.x, mazda.y)
+    def get_risk_level(self):
+        print(self.name)
 
-Car.speed(3, 4)
 
+war = Risk("War", 1, "red", 10)
+print(war)
+
+business = Risk("Business", 3, "blue", 20)
+print(business)
+
+tech = Risk("Tech", 3, "green", 30)
+print("\n", tech)

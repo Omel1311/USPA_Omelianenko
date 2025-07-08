@@ -39,7 +39,7 @@ print("number of NaN values for the column bedrooms :", df['bedrooms'].isnull().
 print("number of NaN values for the column bathrooms :", df['bathrooms'].isnull().sum())
 mean=df['bedrooms'].mean()
 df['bedrooms'].replace(np.nan,mean, inplace=True)
-mean=df['bathrooms'].mean()
+
 df['bathrooms'].replace(np.nan,mean, inplace=True)
 print("number of NaN values for the column bedrooms :", df['bedrooms'].isnull().sum())
 print("number of NaN values for the column bathrooms :", df['bathrooms'].isnull().sum())
